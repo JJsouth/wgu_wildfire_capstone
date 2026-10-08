@@ -1,0 +1,1341 @@
+<?xml-stylesheet href='C:\LSP Program Files\Metavist_2021\XML\NBII_classic.xsl' type='text/xsl'?>
+<metadata>
+  <idinfo>
+    <citation>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2026</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2024 [FPA_FOD_20260615]</title>
+        <edition>7th</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.7</onlink>
+      </citeinfo>
+    </citation>
+    <descript>
+      <abstract>This data publication contains a spatial database of wildfires that occurred in the United States (US) from 1992 to 2024. It is the sixth update of a publication originally generated to support the national Fire Program Analysis (FPA) system. The wildfire records were acquired from the reporting systems of federal, state, and local fire organizations. The following core data elements were required for records to be included in this data publication: discovery date, final fire size, and a point location at least as precise as a Public Land Survey System (PLSS) section (1-square mile grid). The data were transformed to conform, when possible, to the data standards of the National Wildfire Coordinating Group (NWCG), including an updated wildfire-cause standard (approved August 2020). Basic error-checking was performed, and redundant records were identified and removed to the degree possible. The resulting product, referred to as the Fire Program Analysis fire-occurrence database (FPA FOD), includes 2.66 million geo-referenced wildfire records, representing a total of 209 million acres burned during the 33-year period. Identifiers necessary to link the point-based, final-fire-reporting information to published large-fire-perimeter and operational-situation-reporting datasets are included.</abstract>
+      <purpose>There is a wealth of information to be found in agency and local fire reports, but even the most rudimentary interagency analyses of wildfire numbers and area burned from the authoritative systems of record have been stymied to some degree by their disunity. While necessarily incomplete in some aspects, the database presented here is intended to facilitate fairly high-resolution geospatial analysis of U.S. fire activity over the period 1992-2024, based on available information from federal, state, and local systems of record. It was originally generated to support the national, interagency Fire Program Analysis (FPA) system (http://www.forestsandrangelands.gov/FPA/index.shtml).</purpose>
+      <supplinf>This data publication is the seventh edition of the FPA FOD, which spans 1992-2024. The first edition spanned 1992-2011 (https://doi.org/10.2737/RDS-2013-0009), the second edition spanned 1992-2012 (https://doi.org/10.2737/RDS-2013-0009.2), the third edition spanned 1992-2013 (https://doi.org/10.2838/RDS-2013-0009.3), the fourth edition spanned 1992-2015 (https://doi.org/10.2837/RDS-2013-0009.4), the fifth edition spanned 1992-2018 (https://doi.org/10.2837/RDS-2013-0009.5), the sixth edition spanned 1992-2020 (https://doi.org/10.2837/RDS-2013-0009.6). All editions were developed as described by Short (2014). Linkable, published large fire perimeters are available at https://www.mtbs.gov/; research-ready ICS-209 situation-reporting data are available at https://figshare.com/articles/dataset/All-hazards_dataset_mined_from_the_US_National_Incident_Management_System_1999-2020/19858927 and described at https://www.nature.com/articles/s41597-020-0403-0 (documentation and dataset update pending).
+
+This seventh edition, published on 08/04/2026, includes wildfires with discovery dates through 2024 as well as additional data from states/territories (e.g., Guam) and years that were previously underrepresented. On 09/17/2026, the map service URL was updated to point to the newest version available in EDW.
+
+* These data are also available as a map service: https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_FireOccurrenceCurrentEdition_01/MapServer</supplinf>
+    </descript>
+    <timeperd>
+      <timeinfo>
+        <rngdates>
+          <begdate>1992</begdate>
+          <enddate>2024</enddate>
+        </rngdates>
+      </timeinfo>
+      <current>Ground condition</current>
+    </timeperd>
+    <status>
+      <progress>Complete</progress>
+      <update>As needed</update>
+    </status>
+    <spdom>
+      <descgeog>United States of America</descgeog>
+      <bounding>
+        <westbc>-178.8026</westbc>
+        <eastbc>144.9190</eastbc>
+        <northbc>70.3306</northbc>
+        <southbc>13.2486</southbc>
+      </bounding>
+    </spdom>
+    <keywords>
+      <theme>
+        <themekt>ISO 19115 Topic Category</themekt>
+        <themekey>biota</themekey>
+        <themekey>geoscientificInformation</themekey>
+        <themekey>location</themekey>
+      </theme>
+      <theme>
+        <themekt>National Research &amp; Development Taxonomy</themekt>
+        <themekey>Fire</themekey>
+        <themekey>Fire detection</themekey>
+      </theme>
+      <theme>
+        <themekt>None</themekt>
+        <themekey>wildfire</themekey>
+        <themekey>Fire Program Analysis</themekey>
+      </theme>
+      <place>
+        <placekt>None</placekt>
+        <placekey>United States</placekey>
+      </place>
+    </keywords>
+    <accconst>None</accconst>
+    <useconst>These data were collected using funding from the U.S. Government and can be used without additional permissions or fees. If you use these data in a publication, presentation, or other research product please use the following citation:
+
+Short, Karen C. 2026. Spatial wildfire occurrence data for the United States, 1992-2024 [FPA_FOD_20260615]. 7th Edition. Fort Collins, CO: Forest Service Research Data Archive. https://doi.org/10.2737/RDS-2013-0009.7</useconst>
+    <ptcontac>
+      <cntinfo>
+        <cntperp>
+          <cntper>Karen C. Short</cntper>
+          <cntorg>USDA Forest Service, Rocky Mountain Research Station</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>Missoula Fire Sciences Laboratory</address>
+          <address>5775 U.S. Highway 10 West</address>
+          <city>Missoula</city>
+          <state>MT</state>
+          <postal>59808</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntpos>Research Ecologist</cntpos>
+        <cntvoice>406-329-4800</cntvoice>
+        <cntemail>karen.c.short@usda.gov</cntemail>
+        <cntinst>This contact information was current as of original publication date. For current information see Contact Us page on: https://doi.org/10.2737/RDS.</cntinst>
+      </cntinfo>
+    </ptcontac>
+    <datacred>Funding for this project provided by USDA Forest Service Fire &amp; Aviation Management (USFS FAM); USDA Forest Service Rocky Mountain Research Station (RMRS); and Fire Program Analysis (FPA).
+
+
+Author Information:
+
+Karen C. Short
+USDA Forest Service, Rocky Mountain Research Station
+https://orcid.org/0000-0002-3383-0460</datacred>
+    <native>Microsoft Windows 11 Pro; ESRI ArcGIS Pro 3.3.6</native>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2014</pubdate>
+        <title>A spatial database of wildfires in the United States, 1992-2011</title>
+        <geoform>journal article</geoform>
+        <serinfo>
+          <sername>Earth System Science Data</sername>
+          <issue>6: 1-27</issue>
+        </serinfo>
+        <onlink>https://doi.org/10.5194/essd-6-1-2014</onlink>
+        <onlink>https://research.fs.usda.gov/treesearch/45689</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2013</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2011 [FPA_FOD_20130422]</title>
+        <edition>1st</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>USDA Forest Service, Rocky Mountain Research Station</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2014</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2012 [FPA_FOD_20140428]</title>
+        <edition>2nd</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.2</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2015</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2013 [FPA_FOD_20150523]</title>
+        <edition>3rd</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.3</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2017</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2015 [FPA_FOD_20170508]</title>
+        <edition>4th</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.4</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2021</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2018 [FPA_FOD_20210617]</title>
+        <edition>5th</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.5</onlink>
+      </citeinfo>
+    </crossref>
+    <crossref>
+      <citeinfo>
+        <origin>Short, Karen C.</origin>
+        <pubdate>2022</pubdate>
+        <title>Spatial wildfire occurrence data for the United States, 1992-2020 [FPA_FOD_20221014]</title>
+        <edition>6th</edition>
+        <geoform>vector digital data and database</geoform>
+        <pubinfo>
+          <pubplace>Fort Collins, CO</pubplace>
+          <publish>Forest Service Research Data Archive</publish>
+        </pubinfo>
+        <onlink>https://doi.org/10.2737/RDS-2013-0009.6</onlink>
+      </citeinfo>
+    </crossref>
+  </idinfo>
+  <dataqual>
+    <attracc>
+      <attraccr>These data were acquired from federal, state, and local wildfire reporting systems and are subject to inaccuracies and imprecision inherent in the original datasets. All quality-control procedures performed following data acquisition are detailed in supporting documentation (Short 2014).
+
+Short, Karen C. 2014. A spatial database of wildfires in the United States, 1992-2011. Earth System Science Data. 6:1-27. https://doi.org/10.5194/essd-6-1-2014 or https://www.fs.usda.gov/research/treesearch/45689</attraccr>
+    </attracc>
+    <logic>The following core data elements were required for records to be included in this dataset: discovery date, final fire size, and a point location at least a precise as Public Land Survey System (PLSS) section (1-square mile grid). The data were transformed to conform, as best as possible, to the data standards of the National Wildfire Coordinating Group (NWCG). The records were screened for errors and redundancy. All such procedures, including the process used to identify and purge redundant records, are detailed in supporting documentation (Short 2014).</logic>
+    <complete>Viable state and local (i.e., nonfederal) records were not available from all states for all years. Estimates of wildfire numbers and area burned from the FPA FOD may therefore underrepresent actual wildfire activity in certain areas and time periods. Completeness in this regard was assessed by comparing estimates of wildfire numbers and area burned from the FPA FOD to published estimates of these metrics by state and year, and states were "scored" accordingly (i.e., low scores mean data are clearly lacking). High-scoring states include most of those in the U.S. Great Lakes, Southeastern, and Western regions (including Alaska), as well as a handful of others. Estimates of area burned tend to be less compromised than wildfire numbers by missing nonfederal records, because very large fires tend to account for the majority of area burned and are commonly responded to and reported by multiple agencies within the fire service. Efforts to gauge the completeness of the FPA FOD are detailed in supporting documentation (Short 2014). In the 5th edition, some previously unavailable nonfederal wildfire records for the period 1999-2015 were acquired either directly from the state fire services (NH, NJ) or indirectly from the updated National Association of State Foresters database (AR, AZ, CA, CO, FL, HI, ID, IL, OK, SD) and included. This edition includes additional data from states/territories and years previously underrepresented, including Guam.</complete>
+    <lineage>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Alabama Forestry Commission</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Alabama Forestry Commission wildfire data</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2003</begdate>
+              <enddate>2009</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>ALALS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from the state of Alabama</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Alaska Interagency Coordination Center</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Historical fire information</title>
+            <geoform>tabular and vector digital data</geoform>
+            <onlink>https://fire.ak.blm.gov/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2017</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>AICC</srccitea>
+        <srccontr>Interagency wildfire occurrence data from the state of Alaska</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Buckley, D.</origin>
+            <origin>Berry, J. K.</origin>
+            <origin>Spenser, T.</origin>
+            <origin>Carlton, D.</origin>
+            <pubdate>2006</pubdate>
+            <title>Quantifying wildland fire risk in the South, Sanborn Map Company, Southern Wildfire Risk Assessment Project Report</title>
+            <geoform>tabular digital data</geoform>
+            <othercit>(https://www.southernwildfirerisk.com/downloads_reports/Sanborn - Quantifying_Wildland_Fire_Risk_in_South.pdf at the time of acquisition)</othercit>
+            <onlink>https://www.southernwildfirerisk.com/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2007</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>SWRA</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from Alabama, Arkansas, Florida, Georgia, Kentucky, Louisiana, Mississippi, North Carolina, Oklahoma, South Carolina, Tennessee, and Virginia.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>California Department of Forestry and Fire Protection</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Fire occurrence data</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://famit.nwcg.gov/applications/FireAndWeatherData</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1997</begdate>
+              <enddate>2013</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>FAMWEB</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from the state of California.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>California Department of Forestry and Fire Protection</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Fire occurrence data</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://famit.nwcg.gov/applications/FireAndWeatherData</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2024</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>CACDF</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from California unavailable from FAMWEB, obtained directly from CACDF.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Hawaii Wildfire Management Organization</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Pacific Island wildfire data</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2024</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>HIWMO</srccitea>
+        <typesrc>electronic data</typesrc>
+        <srccontr>Interagency wildfire occurrence data for Hawaii and Guam, obtained directly from HIWMO or from the Pacific Fire Exchange, which is a joint program of the HIWMO and the University of Hawaii at Manoa.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>ICS-209</origin>
+            <pubdate>Unknown</pubdate>
+            <title>ICS-209 (Incident Status Summary) module of the SIT209 program</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/page/historical-sit-data</onlink>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1999</begdate>
+              <enddate>2024</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>ICS-209</srccitea>
+        <typesrc>electronic data</typesrc>
+        <srccontr>Records of large or otherwise significant wildfires which could not be obtained from the final fire reporting systems because they were missing or otherwise lacking the necessary information for inclusion in the FPA FOD.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>InFORM</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Interagency Fire Occurrence Reporting Modules</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/inform</onlink>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2021</begdate>
+              <enddate>2024</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>Ground Condition</srccurr>
+        </srctime>
+        <srccitea>InFORM</srccitea>
+        <typesrc>electronic data</typesrc>
+        <srccontr>Federal wildfire occurrence data for 2020, after FIRESTAT and WFMI were deprecated.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>IRWIN</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Integrated Reporting of Wildland-Fire Information</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/irwin-integrated-reporting-wildfire-information</onlink>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2020</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>Ground Condition</srccurr>
+        </srctime>
+        <srccitea>IRWIN</srccitea>
+        <typesrc>electronic data</typesrc>
+        <srccontr>Federal wildfire occurrence data for 2020, after FIRESTAT and WFMI were deprecated.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Eidenshink, Jeff</origin>
+            <origin>Schwind, Brian</origin>
+            <origin>Brewer, Ken</origin>
+            <origin>Zhu, Zhi-Liang</origin>
+            <origin>Quayle, Brad</origin>
+            <origin>Howard, Stephen</origin>
+            <pubdate>2007</pubdate>
+            <title>A project for monitoring trends in burn severity</title>
+            <geoform>tabular and vector digital data</geoform>
+            <serinfo>
+              <sername>Fire Ecology</sername>
+              <issue>3: 3-21</issue>
+            </serinfo>
+            <onlink>https://doi.org/10.4996/fireecology.0301003</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2005</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>MTBS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data acquired from states by the MTBS project.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>National Association of State Foresters</origin>
+            <pubdate>Unknown</pubdate>
+            <title>National Association of State Foresters wildfire data</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/famweb-data-warehouse</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>NASF</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>New Hampshire Division of Forests and Lands</origin>
+            <pubdate>Unknown</pubdate>
+            <title>New Hampshire Division of Forests and Lands wildfire data</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/famweb-data-warehouse</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2015</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>NHNHS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from the state of New Hampshire.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>New Jersey Forest Fire Service</origin>
+            <pubdate>Unknown</pubdate>
+            <title>New Jersey Forest Fire Service wildfire data</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/famweb-data-warehouse</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2003</begdate>
+              <enddate>2016</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>NJNJS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from the state of New Jersey.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Oregon Department of Forestry</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Historic fires</title>
+            <geoform>vector digital data</geoform>
+            <othercit>(https://www.oregon.gov/ODF/GIS/gisdata.shtml at the time of acquisition)</othercit>
+            <onlink>https://gisapps.odf.oregon.gov/data/FireOdfFires.Zip </onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2011</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>ORORS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from the state of Oregon.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>USDA Forest Service, International Institute of Tropical Forestry (IITF)</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Puerto Rico wildfire data, 2003-2011</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2003</begdate>
+              <enddate>2011</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>PRIITF</srccitea>
+        <srccontr>Interagency wildfire occurrence data from Puerto Rico (PR), compiled by the IITF. The IITF received fire-episodes data from the Puerto Rico Fire Department (Cuerpo de Bomberos de Puerto Rico) in 2010 and in 2012. Fire episode information from the years 2008 to 2010 was received during 2010 in paper form from the PR Fire Department and the National Weather Service. The information was manually entered into an Access database using a form created specifically for the project. An Excel spreadsheet with fire episodes information from 2003 to 2011 was received in 2012 from the PR Fire Department. The data were digitally integrated into the IITF fire database in Excel. When integrating the Excel data fire episodes were carefully compared to avoid double entries since there was an overlap of years between both datasets (i.e., from 2008 to 2010).</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Schmidt, Kristen M.</origin>
+            <origin>Menakis, James P.</origin>
+            <origin>Hardy, Colin C.</origin>
+            <origin>Hann, Wendall J.</origin>
+            <origin>Bunnell, David L.</origin>
+            <pubdate>2002</pubdate>
+            <title>Development of coarse-scale spatial data for wildland fire and fuel management</title>
+            <geoform>tabular digital data</geoform>
+            <serinfo>
+              <sername>General Technical Report</sername>
+              <issue>RMRS-87</issue>
+            </serinfo>
+            <pubinfo>
+              <pubplace>Fort Collins, CO</pubplace>
+              <publish>U.S. Department of Agriculture, Forest Service, Rocky Mountain Research Station</publish>
+            </pubinfo>
+            <othercit>41 pp. + CD</othercit>
+            <onlink>https://doi.org/10.2737/RMRS-GTR-87</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>CD</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>1997</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>Schmidt et al. (2002)</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data acquired from states to support national planning and risk assessment efforts.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Texas A&amp;M Forest Service</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Texas A&amp;M Forest Service wildfire data</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1993</begdate>
+              <enddate>2013</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>TXTXS</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data for 1993-2001 (large fires only) and 2009-2013 from the state of Texas.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Washington Department of Natural Resources, Resource Protection Division</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Washington State Department of Natural Resources Fire Statistics, 2008 - Present</title>
+            <geoform>tabular digital data</geoform>
+            <othercit>(http://www.dnr.wa.gov/RecreationEducation/Topics/FireInformation/Pages/Home.aspx at the time of acquisition)</othercit>
+            <onlink>https://www.dnr.wa.gov</onlink>
+          </citeinfo>
+        </srccite>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>2008</begdate>
+              <enddate>2012</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>WADNR</srccitea>
+        <typesrc>electronic data</typesrc>
+        <srccontr>Nonfederal wildfire occurrence data for 2011 from the state of Washington.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Department of Interior</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Wildland Fire Management Information</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/wfmi</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>WFMI</srccitea>
+        <srccontr>Federal wildfire occurrence data from the Bureau of Indian Affairs, Bureau of Land Management, Bureau of Reclamation, and National Park Service for 1992-2020. WFMI was deprecated in 2020 and replaced by IRWIN/InFORM. Some fire reports for 2020 were included in the WFMI archive before it was deprecated, and those were preferentially sourced from WFMI rather than IRWIN.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Fire Administration</origin>
+            <pubdate>Unknown</pubdate>
+            <title>National Fire Incident Reporting System</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1993</begdate>
+              <enddate>2008</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>NFIRS</srccitea>
+        <srccontr>Nonfederal (fire department) wildfire occurrence data</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>U.S. Fish and Wildlife Service</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Fire Management Information System</title>
+            <geoform>tabular digital data</geoform>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2020</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>FMIS</srccitea>
+        <srccontr>Federal wildfire occurrence data from the U.S. Fish and Wildlife Service for 1992-2020.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>USDA Forest Service</origin>
+            <pubdate>Unknown</pubdate>
+            <title>USFS Fire Statistics System</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.wildfire.gov/application/famweb-data-warehouse</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>tabular digital data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2019</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>FIRESTAT</srccitea>
+        <srccontr>Federal wildfire data from the U.S. Forest Service, as archived in the National Interagency Fire Management Integrated Database and accessed via FIRESTAT, for 1992-2019. Data accessible through FIRESTAT include both official and unofficial reports. When accessed for this compilation, only 38% of the fire reports for 1992-2019 were indicated as official (i.e., approved). Unofficial reports (which may lack approval for a variety of reasons that do not make them deficient for purposes of this compilation) were included in the FPA FOD because they represent the best available information to characterize wildfire activity associated with USFS jurisdictions. FIRESTAT was deprecated in 2020 and replaced by IRWIN/InFORM.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>USFS Eastern Forest Environmental Threat Assessment Center</origin>
+            <pubdate>Unknown</pubdate>
+            <title>Wildfire data compiled from the eastern United States to support the National Cohesive Wildland Fire Management Strategy</title>
+            <geoform>tabular digital data</geoform>
+            <onlink>https://www.forestthreats.org/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>electronic data</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1992</begdate>
+              <enddate>2010</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>EFETAC</srccitea>
+        <srccontr>Nonfederal wildfire occurrence data from Eastern states.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Virginia Department of Forestry</origin>
+            <pubdate>2003</pubdate>
+            <title>Virginia Wildfire Incidents, 1995 - 2001</title>
+            <geoform>vector digital data</geoform>
+            <onlink>https://www.dof.virginia.gov/gis</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1995</begdate>
+              <enddate>1996</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>VDOF</srccitea>
+        <srccontr>Wildfire occurrence data from the state of Virginia for 1995-1996.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Virginia Department of Forestry</origin>
+            <origin>Stinnette, Nathan</origin>
+            <pubdate>2007</pubdate>
+            <title>Virginia Fire Incidents, 2002 - 2006</title>
+            <geoform>vector digital data</geoform>
+            <othercit>(http://www.dof.virginia.gov/gis/datadownload.htm at time of download)</othercit>
+            <onlink>https://www.dof.virginia.gov/gis/</onlink>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <sngdate>
+              <caldate>2003</caldate>
+            </sngdate>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>VDOF</srccitea>
+        <srccontr>Wildfire occurrence data from the state of Virginia for 2003.</srccontr>
+      </srcinfo>
+      <srcinfo>
+        <srccite>
+          <citeinfo>
+            <origin>Wisconsin Department of Natural Resources</origin>
+            <pubdate>Unknown</pubdate>
+            <title>DNR - Reported Fire Occurrences</title>
+            <geoform>vector digital data</geoform>
+            <othercit>(ftp://gomapout.dnr.state.wi.us/geodata/forestry/fire_occurrence.zip at time of download)</othercit>
+          </citeinfo>
+        </srccite>
+        <typesrc>online</typesrc>
+        <srctime>
+          <timeinfo>
+            <rngdates>
+              <begdate>1997</begdate>
+              <enddate>2002</enddate>
+            </rngdates>
+          </timeinfo>
+          <srccurr>ground condition</srccurr>
+        </srctime>
+        <srccitea>WIWIS</srccitea>
+        <srccontr>Wildfire occurrence data from the state of Washington for 1997-2002.</srccontr>
+      </srcinfo>
+      <procstep>
+        <procdesc>ACQUIRING DATA:
+The wildfire records were acquired from the reporting systems of federal, state, and local fire organizations. These systems include the National Interagency Fire Management Integrated Database (USFS FIRESTAT archive), the USDI Wildland Fire Management Information (WFMI) system, the FWS Fire Management Information System, the National Association of State Foresters database, and the National Fire Incident Reporting System. FIRESTAT and WFMI were deprecated in 2020 and replaced by the Integrated Reporting of Wildland Fire Information (IRWIN) application and the Interagency Fire Occurrence Modules (InFORM). Records of fires in 2020-2024 that would have previously been archived in FIRESTAT and WFMI were acquired from IRWIN on 4/12/2022 and from InFORM thereafter. Additional data were acquired directly or indirectly from 33 U.S. states and the territories of Guam and Puerto Rico. The ICS-209 module of the SIT209 program was used to obtain records of large fires otherwise missing from the dataset. See \Supplements\FPA_FOD_source_list.pdf (included in the full data publication download), for a list of sources and their acronyms.
+
+DATA SELECTION:
+The following core data elements were required for records to be included in this dataset: discovery date, final fire size, and a point location at least a precise as Public Land Survey System (PLSS) section (1-square mile grid).
+
+DATA PROCESSING:
+Once identified, candidate records were extracted and transformed to conform, as best as possible, to the data standards (https://www.nwcg.gov/data-standards) of the National Wildfire Coordinating Group (NWCG). The ability to conform the data to these standards was constrained by the level of adherence to those standards within the source reporting systems.
+
+After standardization, the data were screened for obvious errors and compiled into a single database. A multi-step process was then used to identify and purge redundant fire records. Identifiers necessary to link the point-based, final-fire-reporting information to published large-fire-perimeter and operational-situation-reporting datasets are included.
+
+More information regarding data-acquisition and processing is included in supporting documentation (Short 2014). Linkable, large-fire perimeter data are available at https://www.mtbs.gov/; research-ready ICS-209 situation-reporting data are available at https://figshare.com/articles/dataset/All-hazards_dataset_mined_from_the_US_National_Incident_Management_System_1999-2020/19858927 and described by St. Denis et al. (2020, 2023).
+
+St. Denis, Lise A.; Mietkiewicz, Nathan P.; Short, Karen C.; Buckland, Mollie; Balch, Jennifer K. 2020. All-hazards dataset mined from the US National Incident Management System 1999–2014. Scientific Data. 7(1): 64. https://doi.org/10.1038/s41597-020-0403-0 and https://research.fs.usda.gov/treesearch/60346
+
+St. Denis, Lise A.; Short, Karen C.; McConnell, K.; Cook, M.; Mietkiewicz, Nathan P.; Buckland, Mollie; Balch, Jennifer K. 2023. All-hazards dataset mined from the US National Incident Management System 1999-2020. Scientific Data. 10:112. https://doi.org/10.1038/s41597-023-01955-0 and https://research.fs.usda.gov/treesearch/65984
+</procdesc>
+        <procdate>Unknown</procdate>
+      </procstep>
+    </lineage>
+  </dataqual>
+  <spdoinfo>
+    <direct>Point</direct>
+  </spdoinfo>
+  <spref>
+    <horizsys>
+      <geograph>
+        <latres>0</latres>
+        <longres>0</longres>
+        <geogunit>Decimal degrees</geogunit>
+      </geograph>
+      <geodetic>
+        <horizdn>North American Datum of 1983</horizdn>
+        <ellips>Geodetic Reference System 80</ellips>
+        <semiaxis>6378137</semiaxis>
+        <denflat>298.257222</denflat>
+      </geodetic>
+    </horizsys>
+  </spref>
+  <eainfo>
+    <overview>
+      <eaover>This data publication contains a database along with a supplemental file containing source information. The database is available in four different formats in this publication (ACCDB, GDB, GPKG, or SQLite), which are all available as separate downloads. Below is a description of the files and their content.
+
+
+SUPPLEMENTAL FILES (1)
+  
+1. \Supplements\FPA_FOD_source_list.pdf: Portable Document Format (PDF) file containing a list of the sources of wildfire data in the FPA FOD. This is an updated version of Table 1 from "A Spatial Database of Wildfires in the United States, 1992-2011" (Short et al. 2014; https://doi.org/10.5194/essd-6-1-2014).
+
+
+VARIABLE DESCRIPTION FILE (1)
+
+1. \Data\_variable_descriptions.csv: Comma-separated values (CSV) file containing a list and description of variables found in all data files. (A description of these variables is also provided below.)
+
+Columns include:
+
+Filename = Name of file [and associated table]
+
+Variable = Name of variable
+
+Units = Units (if applicable)	
+
+Description = Description of variable
+
+Domain Value = unique domain value for categorical variables with multiple domain values (if applicable) (NOTE: there is a separate row for each unique domain value for the specified variable)
+
+Domain Value Description = description of the unique domain value (if applicable)
+
+
+DATA FILES (4)
+
+The database is available as a Microsoft Access (accdb), ESRI ArcGIS geodatabase (gdb), OGC Geopackage (gpkg), and SQLite (sqlite) (SpatiaLite format) file. Data include 1992-2024 wildfires in the United States (FPA=Fire Program Analysis, FOD=Fire-Occurrence Database).
+
+Filenames:
+
+1. \Data\FPA_FOD_20260615.accdb
+2. \Data\FPA_FOD_20260615.gdb
+3. \Data\FPA_FOD_20260615.gpkg
+4. \Data\FPA_FOD_20260615.sqlite
+
+All formats contain the same two entities:
+
+i. Fires = table including wildfire data for the period of 1992-2024 compiled from U.S. federal, state, and local reporting systems.
+ii. NWCG_UnitIDActive_20200123 = look-up table containing all NWCG identifiers for agency units that were active (i.e., valid) as of 23 January 2020, when the list was downloaded from https://www.nifc.blm.gov/unit_id/Publish.html and used as the source of values available to populate the following fields in the Fires table: NWCG_REPORTING_AGENCY, NWCG_REPORTING_UNIT_ID, and NWCG_REPORTING_UNIT_NAME.
+
+Attributes within each file and entity are the same and described below.
+
+
+i. ATTRIBUTES for 'Fires' include: 
+
+FOD_ID = Unique numeric record identifier.
+
+FPA_ID = Unique identifier that contains information necessary to track back to the original record in the source dataset.
+
+SOURCE_SYSTEM_TYPE = Type of source database or system that the record was drawn from, where:
+FED = federal
+NONFED = nonfederal
+INTERAGCY = interagency
+
+SOURCE_SYSTEM = Name of or other identifier for source database or system that the record was drawn from. See \Supplements\FPA_FOD_source_list.pdf for a list of sources and their identifier and Short (2014) for additional source information.
+
+NWCG_REPORTING_AGENCY = Active National Wildlife Coordinating Group (NWCG) Unit Identifier for the agency preparing the fire report, where:
+BIA = Bureau of Indian Affairs
+BLM = Bureau of Land Management
+BOR = Bureau of Reclamation
+DOD = Department of Defense
+DOE = Department of Energy
+FS = Forest Service
+FWS = Fish and Wildlife Service
+IA = Interagency Organization
+NPS = National Park Service
+ST/C&amp;L = State, County, or Local Organization
+TRIBE = Tribal Organization
+
+NWCG_REPORTING_UNIT_ID = Active NWCG Unit Identifier for the unit preparing the fire report.
+
+NWCG_REPORTING_UNIT_NAME = Active NWCG Unit Name for the unit preparing the fire report.
+
+SOURCE_REPORTING_UNIT = Code for the agency unit preparing the fire report, based on code/name in the source dataset.
+
+SOURCE_REPORTING_UNIT_NAME = Name of reporting agency unit preparing the fire report, based on code/name in the source dataset.
+
+LOCAL_FIRE_REPORT_ID = Number or code that uniquely identifies an incident report for a particular reporting unit and a particular calendar year.
+
+LOCAL_INCIDENT_ID = Number or code that uniquely identifies an incident for a particular local fire management organization within a particular calendar year.
+
+FIRE_CODE = Code used within the interagency wildland fire community to track and compile cost information for emergency fire suppression (https://www.firecode.gov/).
+
+FIRE_NAME = Name of the incident, from the fire report (primary) or ICS-209 report (secondary).
+
+ICS_209_PLUS_INCIDENT_JOIN_ID = Primary identifier needed to join into operational situation reporting data for the incident in the ICS-209-PLUS dataset.
+
+ICS_209_PLUS_COMPLEX_JOIN_ID = If part of a complex, secondary identifier potentially needed to join to operational situation reporting data for the incident in the ICS-209-PLUS dataset.
+
+MTBS_ID = Incident identifier, from the Monitoring Trends in Burn Severity (MTBS) perimeter dataset.
+
+MTBS_FIRE_NAME = Name of the incident, from the MTBS perimeter dataset.
+
+COMPLEX_NAME = Name of the complex under which the fire was ultimately managed, when discernible.
+
+FIRE_YEAR = Calendar year in which the fire was discovered or confirmed to exist.
+
+DISCOVERY_DATE = Date on which the fire was discovered or confirmed to exist.
+
+DISCOVERY_DOY = Day of year on which the fire was discovered or confirmed to exist.
+
+DISCOVERY_TIME = Time of day that the fire was discovered or confirmed to exist.
+
+NWCG_CAUSE_CLASSIFICATION = Broad classification of the reason the fire occurred, where:
+Human = Human-caused fire
+Natural = Natural-caused fire
+Missing data/not specified/undetermined = cause of the fire is missing, not specified, or underdetermined
+
+NWCG_GENERAL_CAUSE = Event or circumstance that started a fire or set the stage for its occurrence (Arson/incendiarism, Debris and open burning, Equipment and vehicle use, Firearms and explosives use, Fireworks, Misuse of fire by a minor, Natural, Power generation/transmission/distribution, Railroad operations and maintenance, Recreation and ceremony, Smoking, Other causes, Missing data/not specified/undetermined).
+
+NWCG_CAUSE_AGE_CATEGORY = If cause attributed to children (ages 0-12) or adolescents (13-17), the value for this data element is set to Minor; otherwise null, therefore:
+Minor = Fire caused by a minor, defined as: children (ages 0-12) or adolescents (13-17)
+Null = Fire not caused by a minor
+
+CONT_DATE = Date on which the fire was declared contained or otherwise controlled (mm/dd/yyyy where mm=month, dd=day, and yyyy=year).
+
+CONT_DOY = Day of year on which the fire was declared contained or otherwise controlled.
+
+CONT_TIME = Time of day that the fire was declared contained or otherwise controlled (hhmm where hh=hour, mm=minutes).
+
+FIRE_SIZE = The estimate of acres within the final perimeter of the fire.
+
+FIRE_SIZE_CLASS = Code for fire size based on the number of acres within the final fire perimeter, where:
+A = greater than 0 but less than or equal to 0.25 acres
+B = 0.26-9.9 acres
+C = 10.0-99.9 acres
+D = 100-299 acres
+E = 300 to 999 acres
+F = 1000 to 4999 acres
+G = 5000 acres or greater
+
+LATITUDE = Latitude (NAD83) for point location (origin) of the fire (decimal degrees).
+
+LONGITUDE = Longitude (NAD83) for point location (origin) of the fire (decimal degrees).
+
+OWNER_DESCR = Name of primary owner or entity responsible for managing the land at the point of origin of the fire at the time of the incident.
+
+STATE = Two-letter alphabetic code for the state in which the fire burned (or originated), based on the nominal designation in the fire report (not from a spatial overlay).
+
+COUNTY = County, or equivalent, in which the fire burned (or originated), based on nominal designation in the fire report (not from a spatial overlay).
+
+FIPS_CODE = Five-digit code from the Federal Information Process Standards (FIPS) publication 6-4 for representation of counties and equivalent entities, based on the nominal designation in the fire report (not from a spatial overlay).
+
+FIPS_NAME = County name from the FIPS publication 6-4 for representation of counties and equivalent entities, based on the nominal designation in the fire report (not from a spatial overlay).
+
+
+ii. ATTRIBUTES for 'NWCG_UnitIdActive_20200123' include: 
+
+UnitId = Unique unit identifier assigned by the National Wildfire Coordinating Group (NWCG). 
+
+GeographicArea = Two-letter code for the geographic area in which the unit is located, where:
+AK = Alaska
+CA = California
+EA = Eastern Area
+GB = Great Basin
+IN = International
+NA = National
+NR = Northern Rockies
+NW = Northwest
+RM = Rocky Mountain
+SA = Southern Area
+SW = Southwest
+
+GACC = Six- to eight-letter code for the Geographic Area Coordination Center in which the unit is located or primarily affiliated with, where:
+AUVIVIIC = Australasian Fire and Emergency Service Authorities
+CAMBCIFC = Canadian Interagency Forest Fire Centre
+USAKCC = Alaska Interagency Coordination Center
+USCAONCC = Northern California Area Coordination Center
+USCAOSCC = Southern California Area Coordination Center
+USCORMC = Rocky Mountain Area Coordination Center
+USGASAC = Southern Area Coordination Center
+USIDNIC = National Interagency Coordination Center
+USMTNRC = Northern Rockies Area Coordination Center
+USNMSWC = Southwest Area Coordination Center
+USORNWC = Northwest Area Coordination Center
+USUTGBC = Great Basin Area Coordination Center
+USWIEACC = Eastern Area Coordination Center
+
+WildlandRole = Role of the unit within the wildland fire community.
+
+UnitType = Type of unit (e.g., federal, state, local).
+
+Department = Department (or state/territory) to which the unit belongs, where:
+AK = Alaska
+AL = Alabama
+AR = Arkansas
+AZ = Arizona
+CA = California
+CO = Colorado
+CT = Connecticut
+DE = Delaware
+DHS = Department of Homeland Security
+DOC = Department of Commerce
+DOD = Department of Defense
+DOE = Department of Energy
+DOI = Department of Interior
+DOL = Department of Labor
+FL = Florida
+GA = Georgia
+HI = Hawaii
+IA = Iowa
+IA/GC = Non-Departmental Agencies
+ID = Idaho
+IL = Illinois
+IN = Indiana
+KS = Kansas
+KY = Kentucky
+LA = Louisiana
+MA = Massachusetts
+MD = Maryland
+ME = Maine
+MI = Michigan
+MN = Minnesota
+MO = Missouri
+MS = Mississippi
+MT = Montana
+NC = North Carolina
+NE = Nebraska
+NG = Non-Government
+NH = New Hampshire
+NJ = New Jersey
+NM = New Mexico
+NV = Nevada
+NY = New York
+OH = Ohio
+OK = Oklahoma
+OR = Oregon
+PA = Pennsylvania
+PR = Puerto Rico
+RI = Rhode Island
+SC = South Carolina
+SD = South Dakota
+ST/L = State or Local Government
+TN = Tennessee
+Tribe = Tribe
+TX = Texas
+USDA = Department of Agriculture
+UT = Utah
+VA = Virginia
+VI = U.S. Virgin Islands
+VT = Vermont
+WA = Washington
+WI = Wisconsin
+WV = West Virginia
+WY = Wyoming
+
+Agency = Agency or bureau to which the unit belongs, where:
+AG = Air Guard
+ANC = Alaska Native Corporation
+BIA = Bureau of Indian Affairs
+BLM = Bureau of Land Management
+BOEM = Bureau of Ocean Energy Management
+BOR = Bureau of Reclamation
+BSEE = Bureau of Safety and Environmental Enforcement
+C&amp;L = County &amp; Local
+CDF = California Department of Forestry &amp; Fire Protection
+DC = Department of Corrections
+DFE = Division of Forest Environment
+DFF = Division of Forestry, Fire &amp; State Lands
+DFL = Division of Forests and Land
+DFR = Division of Forest Resources
+DL = Department of Lands
+DNR = Department of Natural Resources
+DNRC = Department of Natural Resources and Conservation
+DNRF = Department of Natural Resources Forest Service
+DOA = Department of Agriculture
+DOC = Department of Conservation
+DOE = Department of Energy
+DOF = Department of Forestry
+DVF = Division of Forestry
+DWF = Division of Wildland Fire
+EPA = Environmental Protection Agency
+FC = Forestry Commission
+FEMA = Federal Emergency Management Agency
+FFC = Bureau of Forest Fire Control
+FFP = Forest Fire Protection
+FFS = Forest Fire Service
+FR = Forest Rangers
+FS = Forest Service
+FWS = Fish &amp; Wildlife Service
+HQ = Headquarters
+JC = Job Corps
+NBC = National Business Center
+NG = National Guard
+NNSA = National Nuclear Security Administration
+NPS = National Park Service
+NWS = National Weather Service
+OES = Office of Emergency Services
+PRI = Private
+SF = State Forestry
+SFS = State Forest Service
+SP = State Parks
+TNC = The Nature Conservancy
+USA = United States Army
+USACE = United States Army Corps of Engineers
+USAF = United States Air Force
+USCG = United States Coast Guard
+USGS = United States Geological Survey
+USN = United States Navy
+
+Country = Country in which the unit is located, where:
+AU = Australia
+CA = Canada
+NZ = New Zealand
+US = United States
+
+State = Two-letter code for the state in which the unit is located (or primarily affiliated).
+
+Code = Unit code (follows state code to create UnitId).
+
+Name = Unit name.
+</eaover>
+      <eadetcit>Short, Karen C. 2014. A spatial database of wildfires in the United States, 1992-2011. Earth System Science Data. 6: 1-27. https://doi.org/10.5194/essd-6-1-2014 or https://research.fs.usda.gov/treesearch/45689</eadetcit>
+    </overview>
+  </eainfo>
+  <distinfo>
+    <distrib>
+      <cntinfo>
+        <cntorgp>
+          <cntorg>USDA Forest Service, Research and Development</cntorg>
+        </cntorgp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>240 West Prospect Road</address>
+          <city>Fort Collins</city>
+          <state>CO</state>
+          <postal>80526</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntvoice>see Contact Instructions</cntvoice>
+        <cntpos>Research Data Archivist</cntpos>
+        <cntinst>This contact information was current as of September 2026. For current information see Contact Us page on: https://doi.org/10.2737/RDS.</cntinst>
+      </cntinfo>
+    </distrib>
+    <resdesc>RDS-2013-0009.7</resdesc>
+    <distliab>Metadata documents have been reviewed for accuracy and completeness. Unless otherwise stated, all data and related materials are considered to satisfy the quality standards relative to the purpose for which the data were collected. However, neither the author, the Archive, nor any part of the federal government can assure the reliability or suitability of these data for a particular purpose. The act of distribution shall not constitute any such warranty, and no responsibility is assumed for a user's application of these data or related materials.
+
+The metadata, data, or related materials may be updated without notification. If a user believes errors are present in the metadata, data or related materials, please use the information in (1) Identification Information: Point of Contact, (2) Metadata Reference: Metadata Contact, or (3) Distribution Information: Distributor to notify the author or the Archive of the issues.</distliab>
+    <stdorder>
+      <digform>
+        <digtinfo>
+          <formname>ACCDB</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>Microsoft Access database</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2013-0009.7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>GDB</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>ESRI ArcGIS geodatabase</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2013-0009.7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>GPKG</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>OGC GeoPackage open source data format implemented as an SQLite database</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2013-0009.7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>SQLite</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>SQLite (SpatiaLite format) open source database</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2013-0009.7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>CSV</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>Comma-separated values file</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://doi.org/10.2737/RDS-2013-0009.7</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <digform>
+        <digtinfo>
+          <formname>ArcMap web service</formname>
+          <formvern>see Format Specification</formvern>
+          <formspec>Enterprise Data Warehouse (EDW) map service</formspec>
+        </digtinfo>
+        <digtopt>
+          <onlinopt>
+            <computer>
+              <networka>
+                <networkr>https://apps.fs.usda.gov/arcx/rest/services/EDW/EDW_FireOccurrenceCurrentEdition_01/MapServer</networkr>
+              </networka>
+            </computer>
+          </onlinopt>
+        </digtopt>
+      </digform>
+      <fees>None</fees>
+    </stdorder>
+  </distinfo>
+  <metainfo>
+    <metd>20260917</metd>
+    <metc>
+      <cntinfo>
+        <cntperp>
+          <cntper>Karen C. Short</cntper>
+          <cntorg>USDA Forest Service, Rocky Mountain Research Station</cntorg>
+        </cntperp>
+        <cntaddr>
+          <addrtype>mailing and physical</addrtype>
+          <address>Missoula Fire Sciences Laboratory</address>
+          <address>5775 U.S. Highway 10 West</address>
+          <city>Missoula</city>
+          <state>MT</state>
+          <postal>59808</postal>
+          <country>USA</country>
+        </cntaddr>
+        <cntpos>Research Ecologist</cntpos>
+        <cntvoice>406-329-4800</cntvoice>
+        <cntemail>karen.c.short@usda.gov</cntemail>
+        <cntinst>This contact information was current as of original publication date. For current information see Contact Us page on: https://doi.org/10.2737/RDS.</cntinst>
+      </cntinfo>
+    </metc>
+    <metstdn>FGDC Content Standard for Digital Geospatial Metadata</metstdn>
+    <metstdv>FGDC-STD-001-1998</metstdv>
+  </metainfo>
+</metadata>
