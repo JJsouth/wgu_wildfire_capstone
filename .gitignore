@@ -225,3 +225,4 @@ wildfire_data.sqlite
 # Ignore Windows/WSL Zone.Identifier metadata files
 *:Zone.Identifier
 *.Zone.Identifier
+raw_data_export.csv
