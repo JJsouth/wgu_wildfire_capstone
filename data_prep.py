@@ -127,34 +127,36 @@ def join_geo_data(df):
 
 
     # --- Find fires outside of any GACC Boundary and join them to nearest boundary ---------------
+    
     # Fires that didn't land in any GACC (offshore, bad coordinates, territories)
     print(f"Fires not in any GACC: {fires["gaccname"].isna().sum()}")
 
-    unmatched = fires[fires["gaccname"].isna()]
-    print(unmatched[["fire_name", "fire_year", "state", "latitude", "longitude"]])
-    print(unmatched["state"].value_counts())
+    if fires["gaccname"].isna().sum() > 0:
+        unmatched = fires[fires["gaccname"].isna()]
+        print(unmatched[["fire_name", "fire_year", "state", "latitude", "longitude"]])
+        print(unmatched["state"].value_counts())
 
 
-    # --- Reproject to a metric CRS so distances are in meters, not degrees ----------------------
-    gacc_m = gacc.to_crs("EPSG:5070")
-    unmatched = fires[fires["gaccname"].isna()].drop(columns=["gaccname", "index_right"])
-    unmatched_m = unmatched.to_crs("EPSG:5070")
+        # --- Reproject to a metric CRS so distances are in meters, not degrees ----------------------
+        gacc_m = gacc.to_crs("EPSG:5070")
+        unmatched = fires[fires["gaccname"].isna()].drop(columns=["gaccname", "index_right"])
+        unmatched_m = unmatched.to_crs("EPSG:5070")
 
-    nearest = gpd.sjoin_nearest(
-        unmatched_m,
-        gacc_m[["gaccname", "geometry"]],
-        how="left",
-        distance_col="dist_m",
-    )
+        nearest = gpd.sjoin_nearest(
+            unmatched_m,
+            gacc_m[["gaccname", "geometry"]],
+            how="left",
+            distance_col="dist_m",
+        )
 
-    # A point equidistant from two polygons returns two rows, so dedupe
-    nearest = nearest[~nearest.index.duplicated(keep="first")]
+        # A point equidistant from two polygons returns two rows, so dedupe
+        nearest = nearest[~nearest.index.duplicated(keep="first")]
 
-    # Write the matches back into the main dataframe
-    print("Matching fires to nearest GACC boundary")
-    fires.loc[nearest.index, "gaccname"] = nearest["gaccname"]
-    print(f"Remaining fires outside of GACC: {fires["gaccname"].isna().sum()}")   # should be 0
-
+        # Write the matches back into the main dataframe
+        print("Matching fires to nearest GACC boundary")
+        fires.loc[nearest.index, "gaccname"] = nearest["gaccname"]
+        print(f"Remaining fires outside of GACC: {fires["gaccname"].isna().sum()}")   # should be 0
+    
     # --- drop bad rows with placeholder coordinates -------------------------------------
     bad = (
         (fires["state"] == "MO") & (fires["gaccname"] == "Southern Area")
