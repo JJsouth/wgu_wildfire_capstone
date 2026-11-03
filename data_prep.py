@@ -163,7 +163,7 @@ def join_geo_data(df):
     print(f"Bad placeholder coordinate rows dropped: {bad.sum()}")   # expect 2
     fires = fires[~bad].copy()
 
-    return fires
+    return gacc, fires
 
 if __name__ == "__main__":
     clean_data = load_data()
