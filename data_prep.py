@@ -88,7 +88,7 @@ def load_data():
     return clean_data
 
 def join_geo_data(df):
-    # --- clean up gacc names to remove uneeded parts of the label ----------------------------------------
+    # --- clean up gacc names to remove uneeded parts of the label ---------------------------------
     def clean_gacc(s):
         s = s.str.replace(
             r"\s*(Geographic Area|Interagency|Area)?\s*Coordination Center$",
@@ -108,7 +108,7 @@ def join_geo_data(df):
     keep = pt.x.between(-130, -60) & pt.y.between(24, 50)
     gacc = parts[keep | (parts["gaccname"] == "Alaska")].dissolve(by="gaccname").reset_index()
 
-    print(f"Regions: {sorted(gacc["gaccname"].unique())}")  # 10 regions
+    print(f"GACC Regions: {sorted(gacc["gaccname"].unique())}")  # 10 regions
     print(f"Polygon Bounds: {gacc.total_bounds}")
     
     # --- Build points and join to fire dataset --------------------------------------------------
@@ -118,25 +118,24 @@ def join_geo_data(df):
         crs="EPSG:4326",
     ).to_crs(gacc.crs)
 
-    n_points = len(fires)
     fires = gpd.sjoin(fires, gacc, how="left", predicate="within")
 
-    print(n_points, len(fires))                  # equal = no duplicated rows
-    print(fires["gaccname"].isna().sum())        
     
-    
-    # Fires that didn't land in any GACC (offshore, bad coordinates, territories)
-    print(fires["gaccname"].isna().sum())
-
     # sjoin can duplicate rows if a point touches overlapping polygons
-    print(len(df), len(fires))
+    print("Check for Duplicate Rows")
+    print(f"Geo Dataset Rows: {len(df)} | Input Dataset Rows: {len(fires)}")
+
+
+    # --- Find fires outside of any GACC Boundary and join them to nearest boundary ---------------
+    # Fires that didn't land in any GACC (offshore, bad coordinates, territories)
+    print(f"Fires not in any GACC: {fires["gaccname"].isna().sum()}")
 
     unmatched = fires[fires["gaccname"].isna()]
     print(unmatched[["fire_name", "fire_year", "state", "latitude", "longitude"]])
     print(unmatched["state"].value_counts())
 
 
-    # Reproject to a metric CRS so distances are in meters, not degrees
+    # --- Reproject to a metric CRS so distances are in meters, not degrees ----------------------
     gacc_m = gacc.to_crs("EPSG:5070")
     unmatched = fires[fires["gaccname"].isna()].drop(columns=["gaccname", "index_right"])
     unmatched_m = unmatched.to_crs("EPSG:5070")
@@ -148,30 +147,23 @@ def join_geo_data(df):
         distance_col="dist_m",
     )
 
-    # 28 fires located on the international border fell outside GACC polygons 
-    # and are assigned to the nearest GACC.
-
     # A point equidistant from two polygons returns two rows, so dedupe
     nearest = nearest[~nearest.index.duplicated(keep="first")]
 
-    # Sanity check: these should all be small
-    print(nearest["dist_m"].describe())
-
-    # Write the matches back into the main frame
+    # Write the matches back into the main dataframe
+    print("Matching fires to nearest GACC boundary")
     fires.loc[nearest.index, "gaccname"] = nearest["gaccname"]
-    print(fires["gaccname"].isna().sum())   # should be 0
+    print(f"Remaining fires outside of GACC: {fires["gaccname"].isna().sum()}")   # should be 0
 
-    # drop bad rows with placeholder coordinates
+    # --- drop bad rows with placeholder coordinates -------------------------------------
     bad = (
         (fires["state"] == "MO") & (fires["gaccname"] == "Southern Area")
         & (fires["latitude"] % 1 == 0) & (fires["longitude"] % 1 == 0)
     )
-    print(bad.sum())   # expect 2
+    print(f"Bad placeholder coordinate rows dropped: {bad.sum()}")   # expect 2
     fires = fires[~bad].copy()
 
-    
-
-
+    return fires
 
 if __name__ == "__main__":
     clean_data = load_data()
