@@ -87,7 +87,7 @@ def load_data():
     clean_data = raw_data
     return clean_data
 
-def join_geo_data(df):
+def get_gacc():
     # --- clean up gacc names to remove uneeded parts of the label ---------------------------------
     def clean_gacc(s):
         s = s.str.replace(
@@ -110,7 +110,11 @@ def join_geo_data(df):
 
     print(f"GACC Regions: {sorted(gacc["gaccname"].unique())}")  # 10 regions
     print(f"Polygon Bounds: {gacc.total_bounds}")
-    
+    return gacc
+
+def join_geo_data(df):
+    # Load Regions
+    gacc = get_gacc()
     # --- Build points and join to fire dataset --------------------------------------------------
     fires = gpd.GeoDataFrame(
         df,
@@ -165,7 +169,7 @@ def join_geo_data(df):
     print(f"Bad placeholder coordinate rows dropped: {bad.sum()}")   # expect 2
     fires = fires[~bad].copy()
 
-    return gacc, fires
+    return fires
 
 if __name__ == "__main__":
     clean_data = load_data()
