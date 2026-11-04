@@ -224,17 +224,18 @@ def region_map(df, label_fn, legend_title, title):
     "No meaningful difference": "#D9D9D9",
     }
 
+    # get regional boundaries
     gacc = get_gacc()
 
+    # pull results from mwu testing df
     res = df[["r_rb", "conclusion"]].copy()
     res["r_rb"] = res["r_rb"].astype(float)
-    
+
+    # merge boundaries and results into one dataset
     gmap = gacc.merge(res, left_on="gaccname", right_index=True, how="left")
-    
     gmap["fill"] = gmap["conclusion"].map(palette)
 
-    print(gmap[["gaccname", "r_rb", "conclusion"]])
-    
+    # split data into lower48 and alaska to use different mapping coordinate systems
     lower48 = gmap[gmap["gaccname"] != "Alaska"].to_crs("EPSG:5070")
     alaska  = gmap[gmap["gaccname"] == "Alaska"].to_crs("EPSG:3338")
 
