@@ -1,6 +1,9 @@
 import sqlite3
 import pandas as pd
 import geopandas as gpd
+import numpy as np
+from scipy.stats import mannwhitneyu
+
 
 def load_data():
     print("querying")
@@ -171,6 +174,58 @@ def join_geo_data(df):
 
     return fires
 
+def data_summary(df):
+     # --- Statistical summary by fire class ----------------------------------------------------------------
+        summary = df.groupby(["nwcg_cause_classification", "fire_size_class"])["fire_size"].agg(
+        n="size", median="median", mean="mean", max="max",
+        p75=lambda s: s.quantile(0.75), p95=lambda s: s.quantile(0.95),
+        )
+        print(summary)
+
+def mann_whitney_test(df, alt="two-sided", alpha=0.005, r_min=0.10):
+    # --- Split data into independent human and natural groups --------------------------------
+    human = df.loc[df["nwcg_cause_classification"] == "Human", "fire_size"].to_numpy()
+    natural = df.loc[df["nwcg_cause_classification"] == "Natural", "fire_size"].to_numpy()
+
+    # --- Calculate mann-whitney u comparison statistic and rank-biserial ---------------------
+    result = mannwhitneyu(human, natural, alternative=alt)
+    r = 2 * result.statistic / (len(human) * len(natural)) - 1 # rank-biserial
+
+    # --- Determine which ignition danger group the region falls into ---------------------------
+    # if the result is statistically significant (p-value < alpha) and the difference is meaningful (r > r_min), return which group it falls under based on the rank-biserial calculation. 
+    # Otherwise conclude there is no meaninful difference
+    if result.pvalue < alpha and abs(r) > r_min:
+        if r_min > 0:
+            conclusion = "Human Larger"
+        elif r_min < 0:
+            conclusion = "Natural Larger"
+    else:
+        conclusion = "No meaningful difference"
+
+    return pd.Series({
+        "n_human": len(human),
+        "n_natural": len(natural),
+        "median_human": np.median(human),
+        "median_natural": np.median(natural),
+        "U": result.statistic,
+        "p_value": result.pvalue,
+        "r_rb": r,  # The rank-biserial rescales the U statistic from -1 to 1 to determine which direction the fire cause leans -1 Natural to 1 Human
+        "prob_superiority": (r + 1) / 2, # The prob_superiority calculates the probability of a randomly selected human fire to be larger than a randomly selected natural fire
+        "conclusion": conclusion
+        })
+
+
 if __name__ == "__main__":
     clean_data = load_data()
-    join_geo_data(clean_data)
+    fires = join_geo_data(clean_data)
+
+    national = mann_whitney_test(fires)
+    print("National Analysis")
+    print(national)
+
+    regional = pd.DataFrame({name: mann_whitney_test(g) for name, g in fires.groupby("gaccname")}).T
+
+
+    print("\nRegional Analysis")
+    print(regional[["n_human", "n_natural", "median_human", "median_natural",
+                    "p_value", "r_rb", "prob_superiority", "conclusion"]])
