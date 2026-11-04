@@ -177,7 +177,7 @@ def join_geo_data(df):
 def data_summary(df):
      # --- Statistical summary by fire class ----------------------------------------------------------------
         summary = df.groupby(["nwcg_cause_classification", "fire_size_class"])["fire_size"].agg(
-        n="size", median="median", mean="mean", max="max",
+        count="size", median="median", mean="mean", max="max",
         p75=lambda s: s.quantile(0.75), p95=lambda s: s.quantile(0.95),
         )
         print(summary)
@@ -195,9 +195,9 @@ def mann_whitney_test(df, alt="two-sided", alpha=0.005, r_min=0.10):
     # if the result is statistically significant (p-value < alpha) and the difference is meaningful (r > r_min), return which group it falls under based on the rank-biserial calculation. 
     # Otherwise conclude there is no meaninful difference
     if result.pvalue < alpha and abs(r) > r_min:
-        if r_min > 0:
+        if r > 0:
             conclusion = "Human Larger"
-        elif r_min < 0:
+        elif r < 0:
             conclusion = "Natural Larger"
     else:
         conclusion = "No meaningful difference"
