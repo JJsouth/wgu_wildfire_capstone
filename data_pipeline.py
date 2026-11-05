@@ -216,82 +216,6 @@ def mann_whitney_test(df, alt="two-sided", alpha=0.005, r_min=0.10):
         "prob_superiority": (r + 1) / 2, # The prob_superiority calculates the probability of a randomly selected human fire to be larger than a randomly selected natural fire
         "conclusion": conclusion
         })
-
-def region_map(df, label_fn, legend_title, title):
-    palette = {
-    "Human Larger":             "#D55E00",
-    "Natural Larger":           "#0072B2",
-    "No meaningful difference": "#D9D9D9",
-    }
-
-    # get regional boundaries
-    gacc = get_gacc()
-
-    # pull results from mwu testing df
-    res = df[["r_rb", "conclusion"]].copy()
-    res["r_rb"] = res["r_rb"].astype(float)
-
-    # merge boundaries and results into one dataset
-    gmap = gacc.merge(res, left_on="gaccname", right_index=True, how="left")
-    gmap["fill"] = gmap["conclusion"].map(palette)
-
-    # split data into lower48 and alaska to use different mapping coordinate systems
-    lower48 = gmap[gmap["gaccname"] != "Alaska"].to_crs("EPSG:5070")
-    alaska  = gmap[gmap["gaccname"] == "Alaska"].to_crs("EPSG:3338")
-
-    # View windows (meters), with extra room on the left for California labels
-    pad = 150_000
-    minx, miny, maxx, maxy = lower48.total_bounds
-    main_xlim = (minx - 800_000, maxx + pad)
-    main_ylim = (miny - pad, maxy + pad)
-
-    ak_parts = alaska.explode(index_parts=False).reset_index(drop=True)
-    ak_big = ak_parts.loc[[ak_parts.area.idxmax()]]          # mainland only
-    x0, y0, x1, y1 = ak_big.total_bounds
-    ak_xlim, ak_ylim = (x0 - pad, x1 + pad), (y0 - pad, y1 + pad)
-
-    # Panel widths proportional to content; Alaska drawn at ~70% scale
-    w_main = main_xlim[1] - main_xlim[0]
-    w_ak = (ak_xlim[1] - ak_xlim[0]) * 0.7
-    h_main = main_ylim[1] - main_ylim[0]
-
-    fig = plt.figure(figsize=(18, 18 * h_main / (w_main + w_ak)))
-    gs = fig.add_gridspec(1, 2, width_ratios=[w_main, w_ak], wspace=0.0)
-    ax_main, ax_ak = fig.add_subplot(gs[0]), fig.add_subplot(gs[1])
-
-    offsets = {"Northern California": (-650_000, 100_000),
-               "Southern California": (-600_000, -450_000)}
-    halo = [pe.withStroke(linewidth=3, foreground="white")]
-
-    def draw(ax, g, xlim, ylim):
-        g.plot(ax=ax, color=g["fill"], edgecolor="white", linewidth=1.2)
-        for _, row in g.iterrows():
-            name = row["gaccname"]
-            p = row.geometry.representative_point()
-            wrapped = name.replace(" ", "\n", 1) if len(name) > 12 else name
-            label = f"{wrapped}\n{label_fn(row)}"
-            if name in offsets:
-                dx, dy = offsets[name]
-                ax.annotate(label, xy=(p.x, p.y), xytext=(p.x + dx, p.y + dy),
-                            ha="center", va="center", fontsize=11, fontweight="bold",
-                            path_effects=halo,
-                            arrowprops=dict(arrowstyle="-", color="black", lw=1))
-            else:
-                ax.annotate(label, (p.x, p.y), ha="center", va="center",
-                            fontsize=11, fontweight="bold", path_effects=halo)
-        ax.set_xlim(xlim); ax.set_ylim(ylim); ax.set_axis_off()
-
-    draw(ax_main, lower48, main_xlim, main_ylim)
-    draw(ax_ak, alaska, ak_xlim, ak_ylim)
-
-    handles = [Patch(facecolor=c, edgecolor="gray", label=k) for k, c in palette.items()]
-    fig.legend(handles=handles, loc="lower right", title=legend_title,
-                 frameon=False, fontsize=11, title_fontsize=11)
-
-    fig.suptitle(title, fontsize=15, y=0.95)
-    plt.subplots_adjust(left=0.01, right=0.99, top=0.92, bottom=0.01)
-    plt.savefig("region_map.png", dpi=200, bbox_inches="tight")
-    plt.show()
     
 
 if __name__ == "__main__":
@@ -309,10 +233,4 @@ if __name__ == "__main__":
     print(regional[["n_human", "n_natural", "median_human", "median_natural",
                     "p_value", "r_rb", "prob_superiority", "conclusion"]])
 
-    region_map(
-    regional,
-    label_fn=lambda row: f"r = {row['r_rb']:+.2f}",
-    legend_title="Which fires are larger?\n(Mann-Whitney U: p < 0.005 and |r| ≥ 0.10)",
-    title="Human vs. Natural Ignition: Fire Size by GACC Region",
-    )
-    
+   
