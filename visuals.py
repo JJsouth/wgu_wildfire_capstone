@@ -103,7 +103,7 @@ def gacc_fire_map(fires, gacc=None, save_path="gacc_fires.png"):
 
 
 # --- Display test results conclusions by region ----------------------------------------------------
-def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path="region_map.png"):
+def results_region_map(df, legend_title, title, gacc = None, save_path="region_map.png"):
     palette = {
     "Human Larger":             "#D55E00",
     "Natural Larger":           "#0072B2",
@@ -115,8 +115,7 @@ def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path
         gacc = get_gacc()
 
     # pull results from mwu testing df
-    res = df[["r_rb", "conclusion"]].copy()
-    res["r_rb"] = res["r_rb"].astype(float)
+    res = df[["conclusion"]].copy()
 
     # merge boundaries and results into one dataset
     gmap = gacc.merge(res, left_on="gaccname", right_index=True, how="left")
@@ -155,8 +154,7 @@ def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path
         for _, row in g.iterrows():
             name = row["gaccname"]
             p = row.geometry.representative_point()
-            wrapped = name.replace(" ", "\n", 1) if len(name) > 12 else name
-            label = f"{wrapped}\n{label_fn(row)}"
+            label = name.replace(" ", "\n", 1) if len(name) > 12 else name
             if name in offsets:
                 dx, dy = offsets[name]
                 ax.annotate(label, xy=(p.x, p.y), xytext=(p.x + dx, p.y + dy),
@@ -181,6 +179,7 @@ def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path
     plt.close(fig)
         
     return fig
+
 
 
 # --- Display Count of Fires by month ---------------------------------------------------------------
