@@ -184,10 +184,8 @@ def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path
 
 
 # --- Display Count of Fires by month ---------------------------------------------------------------
-def monthly_fires(df, save_path="monthly_fires.png"):
-    n_bins = 12 
-
-    # Extract the month component as integers (1 through 12)
+def plot_monthly_fires(df, region_label="Region", save_path="monthly_fires.png"):
+   # Extract the month component as integers (1 through 12)
     df["month"] = df["discovery_dt"].dt.month
 
     bins = np.arange(1, 14)
@@ -221,7 +219,7 @@ def monthly_fires(df, save_path="monthly_fires.png"):
     ax.set_xticks(range(1, 13))
     ax.set_xticklabels(month_names)
 
-    ax.set_title("Total Fires by Month")
+    ax.set_title(f"Total Fires by Month - {region_label}")
     ax.set_xlabel("Month")
     ax.set_ylabel("Count")
     ax.set_xlim(0.5, 12.5)
@@ -232,10 +230,87 @@ def monthly_fires(df, save_path="monthly_fires.png"):
             
     return fig
 
+
+# --- Display how far left or right the rank-biserial skews for a region ----------------------------
+def plot_r_bars(results, r_min=0.10, national_r=None, save_path="r_bars.png"):
+    palette = {
+        "Human Larger":             "#D55E00",
+        "Natural Larger":           "#0072B2",
+        "No meaningful difference": "#D9D9D9",
+        }
+    
+    res = results[["r_rb"]].copy()
+    res["r_rb"] = res["r_rb"].astype(float)
+    res = res.sort_values("r_rb", ascending=False)   # most human-leaning on top
+
+    rows = list(res.itertuples())
+    names = [r.Index for r in rows]
+    values = [r.r_rb for r in rows]
+    if national_r is not None:
+        names.append("National")
+        values.append(national_r)
+
+    # (start, width, color) for each zone of the bar
+    zones = [
+        (-1,     1 - r_min, palette["Natural Larger"]),
+        (-r_min, 2 * r_min, palette["No meaningful difference"]),
+        (r_min,  1 - r_min, palette["Human Larger"]),
+    ]
+
+    fig, ax = plt.subplots(figsize=(10, 0.6 * len(names) + 1.5))
+    bar_h = 0.45
+
+    for i, (name, r) in enumerate(zip(names, values)):
+        y = len(names) - 1 - i          # first row at the top
+        for start, width, color in zones:
+            ax.barh(y, width, left=start, height=bar_h, color=color, edgecolor="white")
+        # the marker line, slightly taller than the bar so it stands out
+        ax.plot([r, r], [y - bar_h * 0.8, y + bar_h * 0.8], color="black", lw=3,
+                solid_capstyle="butt")
+        ax.text(1.04, y, f"{r:+.2f}", va="center", fontsize=11, fontweight="bold")
+
+    ax.set_yticks(range(len(names)))
+    ax.set_yticklabels(names[::-1])
+    ax.set_xlim(-1, 1.15)
+    ax.set_xticks([-1, -r_min, 0, r_min, 1])
+    ax.set_xticklabels(["-1", f"-{r_min:.2f}", "0", f"+{r_min:.2f}", "+1"])
+    ax.set_xlabel("Rank-biserial r  (negative = natural fires larger, positive = human fires larger)")
+
+    for side in ("top", "right", "left"):
+        ax.spines[side].set_visible(False)
+    ax.tick_params(axis="y", length=0)
+
+    fig.savefig(save_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    return fig
+
+
+# --- Breakdown bar graph of how many fires are caused by sub-categories of human activity ----------
+def human_cause_breakdown(fires, region_label="Region", save_path="human_cause_breakdown.png"):
+    human = fires[fires["nwcg_cause_classification"] == "Human"]
+    counts = human["nwcg_general_cause"].value_counts().sort_values()   # smallest at bottom
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    ax.barh(counts.index, counts.values, color="#D55E00", edgecolor="black")
+
+    ax.set_title(f"Human-Caused Fires by General Cause - {region_label}")
+    ax.set_xlabel("Number of fires")
+    ax.set_ylabel("")
+
+    # Count label at the end of each bar
+    for y, v in enumerate(counts.values):
+        ax.text(v, y, f" {v:,}", va="center")
+    ax.set_xlim(0, counts.max() * 1.12)       # room for the labels
+
+    fig.tight_layout()
+    fig.savefig(save_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+    return fig
+
 if __name__ == "__main__":
     gacc = get_gacc()
     fires = join_geo_data(load_data())
-    monthly_fires(fires)
+    plot_monthly_fires(fires)
     
     gacc_map(gacc)
     gacc_fire_map(fires, gacc)
