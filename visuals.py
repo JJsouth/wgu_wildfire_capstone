@@ -6,7 +6,7 @@ from data_pipeline import *
 
 
 
-# --- Display GACC map -----------------------------------------------------------------------
+# --- Display GACC map -----------------------------------------------------------------------------
 def gacc_map(gacc=None, save_path="gacc_regions.png"):
     '''
     Create a general map of the GACC regions
@@ -182,16 +182,65 @@ def results_region_map(df, label_fn, legend_title, title, gacc = None, save_path
         
     return fig
 
-def monthly_fires(fires, file_path="monthly_fires.png"):
-    pass
-    
+
+# --- Display Count of Fires by month ---------------------------------------------------------------
+def monthly_fires(df, save_path="monthly_fires.png"):
+    n_bins = 12 
+
+    # Extract the month component as integers (1 through 12)
+    df["month"] = df["discovery_dt"].dt.month
+
+    bins = np.arange(1, 14)
+
+    # 4. Plot the histogram
+    fig, ax = plt.subplots(figsize=(10, 5))
+    ax.hist(
+        df["month"],
+        bins=bins,
+        edgecolor="black",
+        align="left",
+        rwidth=0.8,
+        color="skyblue",
+    )
+
+    # Format X-axis with monthly names
+    month_names = [
+        "Jan",
+        "Feb",
+        "Mar",
+        "Apr",
+        "May",
+        "Jun",
+        "Jul",
+        "Aug",
+        "Sep",
+        "Oct",
+        "Nov",
+        "Dec",
+    ]
+    ax.set_xticks(range(1, 13))
+    ax.set_xticklabels(month_names)
+
+    ax.set_title("Total Fires by Month")
+    ax.set_xlabel("Month")
+    ax.set_ylabel("Count")
+    ax.set_xlim(0.5, 12.5)
+
+    plt.tight_layout()
+    plt.savefig(save_path, dpi=200, bbox_inches="tight")
+    plt.close(fig)
+            
+    return fig
 
 if __name__ == "__main__":
     gacc = get_gacc()
     fires = join_geo_data(load_data())
+    monthly_fires(fires)
+    
     gacc_map(gacc)
     gacc_fire_map(fires, gacc)
 
+    regional = pd.DataFrame({name: mann_whitney_test(g) for name, g in fires.groupby("gaccname")}).T
     results_region_map(
         regional,
         label_fn=lambda row: f"r = {row['r_rb']:+.2f}",
