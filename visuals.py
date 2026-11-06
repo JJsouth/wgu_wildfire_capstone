@@ -7,47 +7,62 @@ from data_pipeline import *
 
 
 # --- Display GACC map -----------------------------------------------------------------------------
-def gacc_map(gacc=None, save_path="gacc_regions.png"):
+def gacc_map(gacc=None, highlight=None,save_path="gacc_regions.png",  ak_scale=0.7):
     '''
-    Create a general map of the GACC regions
-    Note: The small bit of Southwest blue in the Southern area in not an error, it is the national grasslands in Texas and Omaha Panhandles that the Southwest Agency is in charge of.
-    '''
+        Create a general map of the GACC regions
+        Note: The small bit of Southwest in the Southern area in not an error, it is the national grasslands in Texas and Omaha Panhandles that the Southwest Agency is in charge of.
+        '''
     if gacc is None:
         gacc = get_gacc()
-    
+
     regions = sorted(gacc["gaccname"].unique())
     colors = dict(zip(regions, plt.cm.tab10.colors))
-
+    
+    if highlight is not None:
+            if highlight not in regions:
+                raise ValueError(f"Unknown region '{highlight}'. Choose from: {regions}")
+            colors = {r: (colors[r] if r == highlight else "#E6E6E6") for r in regions}
     lower48 = gacc[gacc["gaccname"] != "Alaska"].to_crs("EPSG:5070")
-    alaska  = gacc[gacc["gaccname"] == "Alaska"].to_crs("EPSG:3338")
+    alaska = gacc[gacc["gaccname"] == "Alaska"].to_crs("EPSG:3338")
 
-    fig = plt.figure(figsize=(20, 9))
-    gs = fig.add_gridspec(1, 2, width_ratios=[4, 1.4], wspace=0.02)
-    ax_main = fig.add_subplot(gs[0])
-    ax_ak   = fig.add_subplot(gs[1])
+    # View windows (meters) built from the actual geometry
+    pad = 100_000
+    minx, miny, maxx, maxy = lower48.total_bounds
+    main_xlim = (minx - pad, maxx + pad)
+    main_ylim = (miny - pad, maxy + pad)
 
-    def draw(ax, g, fontsize):
+    ak_parts = alaska.explode(index_parts=False).reset_index(drop=True)
+    ak_big = ak_parts.loc[[ak_parts.area.idxmax()]]      # mainland only, skips the Aleutians
+    x0, y0, x1, y1 = ak_big.total_bounds
+    ak_xlim, ak_ylim = (x0 - pad, x1 + pad), (y0 - pad, y1 + pad)
+
+    # Panel widths proportional to the content
+    w_main = main_xlim[1] - main_xlim[0]
+    w_ak = (ak_xlim[1] - ak_xlim[0]) * ak_scale
+    h_main = main_ylim[1] - main_ylim[0]
+
+    fig = plt.figure(figsize=(18, 18 * h_main / (w_main + w_ak)))
+    gs = fig.add_gridspec(1, 2, width_ratios=[w_main, w_ak], wspace=0.0)
+    ax_main, ax_ak = fig.add_subplot(gs[0]), fig.add_subplot(gs[1])
+
+    def draw(ax, g, xlim, ylim, fontsize):
         g.plot(ax=ax, color=g["gaccname"].map(colors), edgecolor="white", linewidth=1.2)
         for _, row in g.iterrows():
             p = row.geometry.representative_point()
             name = row["gaccname"]
             label = name.replace(" ", "\n", 1) if len(name) > 12 else name
-            ax.annotate(
-                label,
-                (p.x, p.y), ha="center", va="center",
-                fontsize=fontsize, fontweight="bold", color="black",
-                path_effects=[pe.withStroke(linewidth=3, foreground="white")],
-            )
-        ax.set_axis_off()
+            ax.annotate(label, (p.x, p.y), ha="center", va="center",
+                        fontsize=fontsize, fontweight="bold", color="black",
+                        path_effects=[pe.withStroke(linewidth=3, foreground="white")])
+        ax.set_xlim(xlim); ax.set_ylim(ylim); ax.set_axis_off()
 
-    draw(ax_main, lower48, fontsize=11)
-    draw(ax_ak, alaska, fontsize=11)
+    draw(ax_main, lower48, main_xlim, main_ylim, fontsize=11)
+    draw(ax_ak, alaska, ak_xlim, ak_ylim, fontsize=11)
 
     ax_main.set_title("NIFC Geographic Area Coordination Centers (GACC)", fontsize=15)
+    fig.subplots_adjust(left=0.01, right=0.99, top=0.92, bottom=0.01)
     fig.savefig(save_path, dpi=200, bbox_inches="tight")
-    print(f"Saved GACC map to {save_path}")
     plt.close(fig)
-    
     return fig
     
 
