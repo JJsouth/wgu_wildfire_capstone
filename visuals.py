@@ -48,6 +48,9 @@ def gacc_map(gacc=None, highlight=None,save_path="gacc_regions.png",  ak_scale=0
     def draw(ax, g, xlim, ylim, fontsize):
         g.plot(ax=ax, color=g["gaccname"].map(colors), edgecolor="white", linewidth=1.2)
         for _, row in g.iterrows():
+            name = row["gaccname"]
+            if highlight is not None and name != highlight:
+                continue                       # skip labeling every other region
             p = row.geometry.representative_point()
             name = row["gaccname"]
             label = name.replace(" ", "\n", 1) if len(name) > 12 else name
@@ -67,12 +70,12 @@ def gacc_map(gacc=None, highlight=None,save_path="gacc_regions.png",  ak_scale=0
     
 
 # --- Display all fires across the nation within their GACCs ----------------------------------------
-def gacc_fire_map(fires, gacc=None, save_path="gacc_fires.png"):
+def gacc_fire_map(fires, gacc=None, save_path="gacc_fires.png", ak_scale=0.7):
     if gacc is None:
         gacc = get_gacc()
 
     print("Scaling fires")
-    fires["log_size"] = np.log10(fires["fire_size"].clip(lower=0.01))
+    fires = fires.assign(log_size=np.log10(fires["fire_size"].clip(lower=0.01)))
     vmin, vmax = fires["log_size"].min(), fires["log_size"].max()
 
     print("Sorting fires")
@@ -87,38 +90,57 @@ def gacc_fire_map(fires, gacc=None, save_path="gacc_fires.png"):
     poly_main = gacc[gacc["gaccname"] != "Alaska"].to_crs("EPSG:5070")
     poly_ak   = gacc[gacc["gaccname"] == "Alaska"].to_crs("EPSG:3338")
 
+    # View windows (meters) built from the actual geometry
+    pad = 100_000
+    minx, miny, maxx, maxy = poly_main.total_bounds
+    main_xlim = (minx - pad, maxx + pad)
+    main_ylim = (miny - pad, maxy + pad)
+
+    ak_parts = poly_ak.explode(index_parts=False).reset_index(drop=True)
+    ak_big = ak_parts.loc[[ak_parts.area.idxmax()]]          # mainland only
+    x0, y0, x1, y1 = ak_big.total_bounds
+    ak_xlim, ak_ylim = (x0 - pad, x1 + pad), (y0 - pad, y1 + pad)
+
+    # Panel widths proportional to the content
+    w_main = main_xlim[1] - main_xlim[0]
+    w_ak = (ak_xlim[1] - ak_xlim[0]) * ak_scale
+    h_main = main_ylim[1] - main_ylim[0]
+    w_cbar = 0.03 * (w_main + w_ak)
+
+
     print("Creating fires map")
-    fig = plt.figure(figsize=(22, 10))
-    gs = fig.add_gridspec(1, 2, width_ratios=[4, 1.4], wspace=0.02)
+    fig = plt.figure(figsize=(22, 22 * h_main / (w_main + w_ak + w_cbar)))
+    gs = fig.add_gridspec(1, 3, width_ratios=[w_main, w_ak, w_cbar], wspace=0.0)
     ax_main = fig.add_subplot(gs[0])
     ax_ak   = fig.add_subplot(gs[1])
+    ax_cbar = fig.add_subplot(gs[2])
 
-    for ax, poly, pts, size in [
-        (ax_main, poly_main, pts_main, 0.3),
-        (ax_ak,   poly_ak,   pts_ak,   0.6),
+    for ax, poly, pts, size, xlim, ylim in [
+        (ax_main, poly_main, pts_main, 0.3, main_xlim, main_ylim),
+        (ax_ak,   poly_ak,   pts_ak,   0.6, ak_xlim,   ak_ylim),
     ]:
-        poly.plot(ax=ax, color="#eeeeee", edgecolor="none")            # base fill
+        poly.plot(ax=ax, color="#eeeeee", edgecolor="none")             # base fill
         pts.plot(ax=ax, column="log_size", cmap="viridis",
-                vmin=vmin, vmax=vmax, markersize=size, alpha=0.6,
-                rasterized=True)                                       # fires
+                 vmin=vmin, vmax=vmax, markersize=size, alpha=0.6,
+                 rasterized=True)                                       # fires
         poly.boundary.plot(ax=ax, color="black", linewidth=0.8)         # borders on top
-        ax.set_axis_off()
+        ax.set_xlim(xlim); ax.set_ylim(ylim); ax.set_axis_off()
 
     ax_main.set_title("Wildfires by GACC region (color = log10 acres burned)", fontsize=15)
 
     sm = plt.cm.ScalarMappable(cmap="viridis", norm=plt.Normalize(vmin, vmax))
-    fig.colorbar(sm, ax=[ax_main, ax_ak], shrink=0.6, pad=0.01).set_label("log10(fire size, acres)")
+    fig.colorbar(sm, cax=ax_cbar).set_label("log10(fire size, acres)")
 
-    
-    plt.savefig(save_path, dpi=200, bbox_inches="tight")
+    fig.subplots_adjust(left=0.01, right=0.95, top=0.92, bottom=0.05)
+    fig.savefig(save_path, dpi=200, bbox_inches="tight")
     print(f"Saved GACC fires map to {save_path}")
     plt.close(fig)
-    
+
     return fig
 
 
 # --- Display test results conclusions by region ----------------------------------------------------
-def results_region_map(df, legend_title, title, gacc = None, save_path="region_map.png"):
+def results_region_map(df, legend_title, title, gacc = None, highlight = None, save_path="region_map.png"):
     palette = {
     "Human Larger":             "#D55E00",
     "Natural Larger":           "#0072B2",
@@ -135,6 +157,11 @@ def results_region_map(df, legend_title, title, gacc = None, save_path="region_m
     # merge boundaries and results into one dataset
     gmap = gacc.merge(res, left_on="gaccname", right_index=True, how="left")
     gmap["fill"] = gmap["conclusion"].map(palette)
+
+    if highlight is not None:
+        if highlight not in set(gmap["gaccname"]):
+            raise ValueError(f"Unknown region '{highlight}'")
+        gmap["fill"] = gmap["fill"].where(gmap["gaccname"] == highlight, "#EEEEEE")
 
     # split data into lower48 and alaska to use different mapping coordinate systems
     lower48 = gmap[gmap["gaccname"] != "Alaska"].to_crs("EPSG:5070")
@@ -168,6 +195,8 @@ def results_region_map(df, legend_title, title, gacc = None, save_path="region_m
         g.plot(ax=ax, color=g["fill"], edgecolor="white", linewidth=1.2)
         for _, row in g.iterrows():
             name = row["gaccname"]
+            if highlight is not None and name != highlight:
+                continue                       # skip labeling every other region
             p = row.geometry.representative_point()
             label = name.replace(" ", "\n", 1) if len(name) > 12 else name
             if name in offsets:
@@ -185,8 +214,10 @@ def results_region_map(df, legend_title, title, gacc = None, save_path="region_m
     draw(ax_ak, alaska, ak_xlim, ak_ylim)
 
     handles = [Patch(facecolor=c, edgecolor="gray", label=k) for k, c in palette.items()]
-    fig.legend(handles=handles, loc="lower right", title=legend_title,
-                 frameon=False, fontsize=11, title_fontsize=11)
+    
+    if highlight is None:
+        fig.legend(handles=handles, loc="lower right", title=legend_title,
+                    frameon=False, fontsize=11, title_fontsize=11)
 
     fig.suptitle(title, fontsize=15, y=0.95)
     plt.subplots_adjust(left=0.01, right=0.99, top=0.92, bottom=0.01)
