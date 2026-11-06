@@ -6,12 +6,17 @@ import matplotlib.pyplot as plt
 import matplotlib.patheffects as pe
 from matplotlib.patches import Patch
 from scipy.stats import mannwhitneyu
+from pathlib import Path
+
+PROJECT_ROOT = Path(__file__).parent
+DB_PATH = PROJECT_ROOT / "wildfire_data.sqlite"
+GACC_PATH = PROJECT_ROOT / "gacc_boundaries.geojson"
 
 
-def load_data():
+def load_data(filepath=DB_PATH):
     print("querying")
     # Load Raw Dataset
-    conn = sqlite3.connect("wildfire_data.sqlite")
+    conn = sqlite3.connect(filepath)
 
     relevant_columns = [
         'fire_name',
@@ -93,7 +98,7 @@ def load_data():
     clean_data = raw_data
     return clean_data
 
-def get_gacc():
+def get_gacc(filepath=GACC_PATH):
     # --- clean up gacc names to remove uneeded parts of the label ---------------------------------
     def clean_gacc(s):
         s = s.str.replace(
@@ -103,7 +108,7 @@ def get_gacc():
         return s.replace({"Eastern": "Eastern Area", "Southern": "Southern Area"})
 
     # Load the boundaries, clean the names:
-    gacc = gpd.read_file("gacc_boundaries.geojson")
+    gacc = gpd.read_file(filepath)
     gacc.columns = gacc.columns.str.lower()
     gacc = gacc[["gaccname", "geometry"]].copy()
     gacc["gaccname"] = clean_gacc(gacc["gaccname"])    
@@ -118,9 +123,10 @@ def get_gacc():
     print(f"Polygon Bounds: {gacc.total_bounds}")
     return gacc
 
-def join_geo_data(df):
+def join_geo_data(df, gacc=None):
     # Load Regions
-    gacc = get_gacc()
+    if gacc is None:
+            gacc = get_gacc()
     # --- Build points and join to fire dataset --------------------------------------------------
     fires = gpd.GeoDataFrame(
         df,
