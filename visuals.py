@@ -3,8 +3,14 @@ import matplotlib.patheffects as pe
 import matplotlib.pyplot as plt
 import numpy as np
 from data_pipeline import *
+from pathlib import Path
 
+CHARTS_DIR = Path(__file__).parent / "charts"
 
+def chart_path(region, filename):
+    folder = CHARTS_DIR / region
+    folder.mkdir(parents=True, exist_ok=True)
+    return folder / filename
 
 # --- Display GACC map -----------------------------------------------------------------------------
 def gacc_map(gacc=None, highlight=None,save_path="gacc_regions.png",  ak_scale=0.7):
@@ -351,20 +357,3 @@ def human_cause_breakdown(fires, region_label="Region", save_path="human_cause_b
     fig.savefig(save_path, dpi=200, bbox_inches="tight")
     plt.close(fig)
     return fig
-
-if __name__ == "__main__":
-    gacc = get_gacc()
-    fires = join_geo_data(load_data())
-    plot_monthly_fires(fires)
-    
-    gacc_map(gacc)
-    gacc_fire_map(fires, gacc)
-
-    regional = pd.DataFrame({name: mann_whitney_test(g) for name, g in fires.groupby("gaccname")}).T
-    results_region_map(
-        regional,
-        label_fn=lambda row: f"r = {row['r_rb']:+.2f}",
-        legend_title="Which fires are larger?\n(Mann-Whitney U: p < 0.005 and |r| ≥ 0.10)",
-        title="Human vs. Natural Ignition: Fire Size by GACC Region",
-        )
-        
