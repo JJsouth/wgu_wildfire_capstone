@@ -11,3 +11,4 @@ dependencies:
   - ipywidgets
   - geopandas
   - matplotlib-base<3.11
+  - python-pptx
