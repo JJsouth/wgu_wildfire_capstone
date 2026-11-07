@@ -7,7 +7,10 @@ from visuals import (gacc_map, gacc_fire_map, results_region_map, plot_r_bars,
 from segments import SEGMENTS
 
 MIN_N = 30                           # min fires per cause group to run the test
-FIRE_MAP_SEGMENTS = {"all", "tail"}  # the fire scatter maps are slow, so limit them
+FIRE_MAP_SEGMENTS = {"all", "tail", "body", "class_A", 
+                     "class_B", "class_C", "class_D",
+                     "class_E", "class_F", "class_g"
+                     }  # the fire scatter maps are slow, so limit them
 LEGEND_TITLE = "Which fires are larger?\n(Mann-Whitney U: p < 0.005 and |r| ≥ 0.10)"
 
 
